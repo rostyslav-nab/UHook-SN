@@ -1,10 +1,12 @@
 .appNavbar {
-  background-color: lime;
-  height: 600px;
 }
 
 .navbarMenu {
   ul{
     list-style: none;
+    a{
+      color: #fff;
+      text-decoration: none;
+    }
   }
 }

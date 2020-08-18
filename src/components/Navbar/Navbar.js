@@ -6,10 +6,10 @@ export const Navbar = () => {
         <div className={classes.appNavbar}>
             <div className={classes.navbarMenu}>
                 <ul>
-                    <li>Profile</li>
-                    <li>Messages</li>
-                    <li>News</li>
-                    <li>Music</li>
+                    <li><a href="/profile">Profile</a></li>
+                    <li><a href="/dialogs">Messages</a></li>
+                    <li><a href="/news">News</a></li>
+                    <li><a href="/music">Music</a></li>
                 </ul>
             </div>
         </div>
