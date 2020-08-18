@@ -1,11 +1,12 @@
 import React from "react"
 
-export const Post = () => {
+export const Post = (props) => {
     return(
         <div>
-            <h1>Post</h1>
-            <p>It`s my first post</p>
-            <span>like</span>
+            <h4>Post</h4>
+            <p>{props.message}</p>
+            <span>Likes {props.likesCount}</span>
+            <hr/>
         </div>
     )
 }

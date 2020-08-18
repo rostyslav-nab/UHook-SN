@@ -8,5 +8,16 @@
       color: #fff;
       text-decoration: none;
     }
+    a.active {
+      color: #F45099;
+    }
+  }
+}
+
+.activeMenuButton {
+  padding: 5px;
+  text-align: center;
+  img{
+    padding-right: 10px;
   }
 }

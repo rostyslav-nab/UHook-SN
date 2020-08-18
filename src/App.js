@@ -3,10 +3,11 @@ import './App.css'
 import {Header} from "./components/Header/Header"
 import {Navbar} from "./components/Navbar/Navbar"
 import {Profile} from "./components/Profile/Profile"
-import {Dialogs} from "./components/Dialogs/Dialogs"
 import {Route} from "react-router-dom"
+import {Footer} from "./components/Footer/Footer"
+import {Dialogs} from "./components/Dialogs/Dialogs";
 
-export const App = () =>{
+export const App = (props) =>{
   return(
       <div className='appWrapper'>
           <div className='container'>
@@ -18,8 +19,13 @@ export const App = () =>{
                       <Navbar/>
                   </div>
                   <div className="col-9">
-                      <Route path='/profile' component={Profile}/>
-                      <Route path='/dialogs' component={Dialogs}/>
+                      <Route path='/profile' render={()=><Profile state={props.state.profilePage} addPost={props.addPost}/>}/>
+                      <Route path='/dialogs' render={ ()=><Dialogs state={props.state.dialogsPage}/>}/>
+                  </div>
+              </div>
+              <div className="row">
+                  <div className="col-12">
+                      <Footer/>
                   </div>
               </div>
           </div>

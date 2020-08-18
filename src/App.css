@@ -1,4 +1,9 @@
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
 .appWrapper{
     background-color: #394263;
-    font-family: 'Red Rose', cursive;
+    font-family: 'Roboto', sans-serif;
 }

@@ -1,14 +1,13 @@
 import React from "react"
 import classes from './Profile.module.scss'
-import {AvaDescription} from "./AvaDescription/AvaDescription"
+import {ProfileInfo} from "./ProfileInfo/ProfileInfo"
 import {MyPosts} from "./MyPosts/MyPosts"
 
-export const Profile = () => {
-    return(
+export const Profile = (props) => {
+    return (
         <div className={classes.profileWrapper}>
-            Profile
-            <AvaDescription/>
-            <MyPosts/>
+            <ProfileInfo/>
+            <MyPosts posts={props.state.posts} addPost={props.addPost}/>
         </div>
     )
 }
