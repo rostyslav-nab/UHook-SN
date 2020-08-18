@@ -17,8 +17,6 @@ export const MyPosts = (props) => {
               <input type="text" className="form-control" ref={newPostElement}/>
               <div>
                   <button className='btn btn-primary' onClick={addPost}>Add Post</button>
-                  <button className='btn btn-primary' onClick={addPost}>Add Post</button>
-                  <button className='btn btn-primary' onClick={addPost}>Add Post</button>
               </div>
           </div>
           {postsElements}

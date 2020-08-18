@@ -1,0 +1,27 @@
+.postWrapper {
+  min-height: 150px;
+  width: 100%;
+  margin-top: 30px;
+  background-color: #2E3551;
+  border-radius: 15px;
+  color: #fff;
+  padding: 20px;
+  img {
+    height: 30px;
+    width: 30px;
+  }
+  span {
+    margin-left: 10px;
+  }
+}
+
+.postTitle {
+  text-align: center;
+  font-weight: bold;
+  color: #fff;
+  padding: 10px;
+}
+
+.postText {
+  margin-left: 10px;
+}
