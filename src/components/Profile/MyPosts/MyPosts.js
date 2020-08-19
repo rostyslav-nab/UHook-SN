@@ -7,14 +7,19 @@ export const MyPosts = (props) => {
 
     let newPostElement = React.createRef()
     const addPost = () => {
-        let text = newPostElement.current.value
-        props.addPost(text)
+        props.addPost()
+    }
+
+    const onPostChange = (e) => {
+        let text = e.target.value
+        props.upadateNewPostText(text)
+        console.log(text);
     }
 
     return (
       <div className={classes.myPostWrapper}>
           <div className={classes.addPostBlock}>
-              <input type="text" className="form-control" ref={newPostElement}/>
+              <input type="text" className="form-control" onChange={onPostChange} ref={newPostElement} value={props.newPostText}/>
               <div>
                   <button className='btn btn-primary' onClick={addPost}>Add Post</button>
               </div>

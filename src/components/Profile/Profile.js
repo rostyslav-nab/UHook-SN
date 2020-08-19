@@ -7,7 +7,10 @@ export const Profile = (props) => {
     return (
         <div className={classes.profileWrapper}>
             <ProfileInfo/>
-            <MyPosts posts={props.state.posts} addPost={props.addPost}/>
+            <MyPosts posts={props.profilePage.posts}
+                     newPostText={props.profilePage.newPostText}
+                     upadateNewPostText={props.upadateNewPostText}
+                     addPost={props.addPost}/>
         </div>
     )
 }
