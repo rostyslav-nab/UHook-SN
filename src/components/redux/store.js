@@ -1,4 +1,4 @@
-import {ADD_POST, UPDATE_NEW_POST_TEXT} from "../../types";
+import {ADD_POST, UPDATE_NEW_POST_TEXT} from "../../types"
 
 export let store = {
     _state: {
@@ -55,7 +55,18 @@ export let store = {
     }
 }
 
+export const addPostActionCreator = () => {
+    return {
+        type: ADD_POST
+    }
+}
 
+export const updateNewPostTextActionCreator = (text) => {
+    return {
+        type: UPDATE_NEW_POST_TEXT,
+        text
+    }
+}
 
 window.store = store
 
