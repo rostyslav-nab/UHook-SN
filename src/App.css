@@ -1,9 +1,22 @@
 html, body {
     height: 100%;
     margin: 0;
+    padding: 0;
+}
+.navbar, .content{
+    margin-top: 64px;
+}
+
+.row {
+    margin-right: 0;
+    margin-left: 0;
+}
+
+.navbar {
+    display: block;
 }
 
 .appWrapper{
-    background-color: #394263;
-    font-family: 'Roboto', sans-serif;
+    background-color: #fff;
+    font-family: 'Roboto Mono', monospace;
 }

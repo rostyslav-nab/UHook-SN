@@ -8,28 +8,28 @@ import {Footer} from "./components/Footer/Footer"
 import {Dialogs} from "./components/Dialogs/Dialogs"
 
 
-export const App = (props) =>{
-  return(
-      <div className='appWrapper'>
-          <div className='container'>
-              <div className="row">
-                  <div className="col-12">
-                      <Header/>
-                  </div>
-                  <div className="col-3">
-                      <Navbar/>
-                  </div>
-                  <div className="col-9">
-                      <Route path='/profile' render={()=><Profile profilePage={props.state.profilePage} dispatch={props.dispatch} />}/>
-                      <Route path='/dialogs' render={ ()=><Dialogs store={props.store} />}/>
-                  </div>
-              </div>
-              <div className="row">
-                  <div className="col-12">
-                      <Footer/>
-                  </div>
-              </div>
-          </div>
-      </div>
-  )
+export const App = (props) => {
+    return (
+        <div className='appWrapper'>
+            <div className="row">
+                <div className="col-12 header">
+                    <Header/>
+                </div>
+                <div className="col-2 navbar">
+                    <Navbar/>
+                </div>
+                <div className="col-10 content">
+                    <Route path='/profile'
+                           render={() => <Profile profilePage={props.state.profilePage} dispatch={props.dispatch}/>}/>
+                    <Route path='/dialogs' render={() => <Dialogs store={props.store}/>}/>
+                </div>
+            </div>
+            <div className="row">
+                <div className="col-12">
+                    <Footer/>
+                </div>
+            </div>
+
+        </div>
+    )
 }

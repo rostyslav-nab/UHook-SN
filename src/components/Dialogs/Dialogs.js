@@ -20,16 +20,15 @@ export const Dialogs = (props) => {
 
     return (
         <div className={classes.dialogsWrapper}>
-            <h1>Dialogs</h1>
             <div className="row">
-                <div className="col-4">
+                <div className="col-3">
                     <div className={classes.dialogs}>
                         <div className={classes.dialogsItem}>
                             {dialogsElements}
                         </div>
                     </div>
                 </div>
-                <div className="col-8">
+                <div className="col-9">
                     <div className={classes.messages}>
                         <div className={classes.messagesItem}>
                             {messageElements}

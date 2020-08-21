@@ -4,8 +4,17 @@ import classes from './ProfileInfo.module.scss'
 export const ProfileInfo = () => {
     return(
         <div className={classes.avaDescriptionWrapper}>
-            <img src="https://u.kanobu.ru/articles/pics/63588874-3500-470c-adbc-e5ba8c2df976.jpg" alt="avatar"/>
-            <p>Description</p>
+            <div className={classes.backgroundTitle}>
+                <img src="https://images.unsplash.com/photo-1446776899648-aa78eefe8ed0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1052&q=80" alt="backgroundTitle"/>
+            </div>
+
+            <div className={classes.mainInfo}>
+                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80" alt="avatar"/>
+                <h1>Josephine Williams</h1>
+                <p>React/Redux Developer</p>
+            </div>
+            <hr/>
         </div>
+
     )
 }

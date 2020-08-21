@@ -1,20 +1,26 @@
 .dialog {
-  width: 100px;
-  height: 40px;
-  margin-bottom: 10px;
-  padding-top: 6px;
+  width: 280px;
+  height: 85px;
   background-color: #fff;
-  border-radius: 10px;
-  text-align: center;
+  border: 1px solid #F1F3F4;
+  padding: 20px 18px;
+  img {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
 }
 
 .dialogItem {
   text-decoration: none;
   color: #000;
   font-weight: bold;
+  padding-left: 10px;
   &:hover {
     text-decoration: none;
-    color: #F45099;
+    color: #0cc5f4;
   }
 }
 

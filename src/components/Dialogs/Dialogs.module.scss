@@ -3,15 +3,18 @@
 }
 
 .dialogs {
+  margin-top: 20px;
   .dialogsItem {
   }
 }
 
 .messages {
+  margin-top: 20px;
   .messagesItem {
 
   }
-  button {
+  button, textarea {
     margin-top: 20px;
   }
+
 }

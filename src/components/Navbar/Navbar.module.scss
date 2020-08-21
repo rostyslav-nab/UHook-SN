@@ -1,23 +1,31 @@
 .appNavbar {
+  margin-top: 40px;
 }
 
 .navbarMenu {
   ul{
     list-style: none;
+    font-weight: 400;
     a{
-      color: #fff;
+      color: #000;
       text-decoration: none;
     }
-    a.active {
-      color: #F45099;
+    .active {
+      color: #17A2B8;
+      transition: ease 1s;
+      font-weight: bold;
     }
   }
 }
 
 .activeMenuButton {
+  box-sizing: border-box;
+  border-radius: 8px;
+  font-size: 25px;
+  margin-bottom: 5px;
   padding: 5px;
-  text-align: center;
   img{
     padding-right: 10px;
   }
+
 }

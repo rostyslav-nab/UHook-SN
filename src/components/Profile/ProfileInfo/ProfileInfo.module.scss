@@ -1,6 +1,29 @@
 .avaDescriptionWrapper {
+  text-align: center;
+}
+
+.backgroundTitle {
   img{
-    height: 300px;
-    width: 600px;
+    height: 285px;
+    width: 1000px;
+    border-radius: 9pt;
+    object-fit: cover;
+
   }
+}
+
+.mainInfo {
+  z-index: 2;
+  margin-top: -100px;
+  img {
+    height: 120px;
+    width: 120px;
+    border: 3px solid white;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  p {
+    font-weight: 300;
+  }
+
 }
