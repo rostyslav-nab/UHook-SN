@@ -7,6 +7,7 @@ import {Route} from "react-router-dom"
 import {Footer} from "./components/Footer/Footer"
 import {Dialogs} from "./components/Dialogs/Dialogs"
 
+
 export const App = (props) =>{
   return(
       <div className='appWrapper'>
@@ -20,7 +21,7 @@ export const App = (props) =>{
                   </div>
                   <div className="col-9">
                       <Route path='/profile' render={()=><Profile profilePage={props.state.profilePage} dispatch={props.dispatch} />}/>
-                      <Route path='/dialogs' render={ ()=><Dialogs state={props.state.dialogsPage}/>}/>
+                      <Route path='/dialogs' render={ ()=><Dialogs store={props.store} />}/>
                   </div>
               </div>
               <div className="row">

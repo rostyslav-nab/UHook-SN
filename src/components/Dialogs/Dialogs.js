@@ -1,11 +1,22 @@
 import React from "react"
 import classes from './Dialogs.module.scss'
 import {Dialog} from "./Dialog/Dialog"
-import {Message} from "./Message/Message";
+import {Message} from "./Message/Message"
+import {sendMessageCreator, updateNewMessageBodyCreator} from "../redux/store"
 
 export const Dialogs = (props) => {
-    let dialogsElements = props.state.dialogs.map( (dialog)=> <Dialog name={dialog.name} id={dialog.id} key={dialog.id}/> )
-    let messageElements = props.state.messages.map( (message) => <Message message={message.message} key={message.id}/>)
+    let state = props.store.getState().dialogsPage
+    let dialogsElements = state.dialogs.map( (dialog)=> <Dialog name={dialog.name} id={dialog.id} key={dialog.id}/> )
+    let messageElements = state.messages.map( (message) => <Message message={message.message} key={message.id}/>)
+    let newMessageBody = state.newMessageBody
+    let onSendMessageClick = () => {
+        props.store.dispatch(sendMessageCreator())
+    }
+
+    let onNewMessageChange = (e) =>{
+        let body = e.target.value
+        props.store.dispatch(updateNewMessageBodyCreator(body))
+    }
 
     return (
         <div className={classes.dialogsWrapper}>
@@ -22,6 +33,12 @@ export const Dialogs = (props) => {
                     <div className={classes.messages}>
                         <div className={classes.messagesItem}>
                             {messageElements}
+                        </div>
+                        <div>
+                            <textarea placeholder='Enter your message' className="form-control" value={newMessageBody} onChange={onNewMessageChange}/>
+                        </div>
+                        <div>
+                            <button className='btn btn-dark' onClick={onSendMessageClick}>Send Message</button>
                         </div>
                     </div>
                 </div>

@@ -19,7 +19,7 @@ export const MyPosts = (props) => {
     return (
       <div className={classes.myPostWrapper}>
           <div className={classes.addPostBlock}>
-              <input type="text" className="form-control" onChange={onPostChange} ref={newPostElement} value={props.newPostText}/>
+              <textarea type="text" className="form-control" onChange={onPostChange} ref={newPostElement} value={props.newPostText}/>
               <div>
                   <button className='btn btn-primary' onClick={addPost}>Add Post</button>
               </div>

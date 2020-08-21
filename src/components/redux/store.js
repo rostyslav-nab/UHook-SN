@@ -1,4 +1,4 @@
-import {ADD_POST, UPDATE_NEW_POST_TEXT} from "../../types"
+import {ADD_POST, SEND_MESSAGE, UPDATE_NEW_MESSAGE_BODY, UPDATE_NEW_POST_TEXT} from "../../types"
 
 export let store = {
     _state: {
@@ -25,7 +25,8 @@ export let store = {
                 {id: 2, message: 'I like React and u??'},
                 {id: 3, message: 'Samurai yoy'},
                 {id: 4, message: 'My life my rules'}
-            ]
+            ],
+            newMessageBody: ''
         }
     },
     getState(){
@@ -51,6 +52,14 @@ export let store = {
        } else if (action.type === UPDATE_NEW_POST_TEXT){
            this._state.profilePage.newPostText = action.text
            this._callSubscriber(this._state)
+       } else if (action.type === UPDATE_NEW_MESSAGE_BODY){
+           this._state.dialogsPage.newMessageBody = action.body
+           this._callSubscriber(this._state)
+       } else if (action.type === SEND_MESSAGE){
+           let body = this._state.dialogsPage.newMessageBody
+           this._state.dialogsPage.newMessageBody = ''
+           this._state.dialogsPage.messages.push({id: Date.now(), message: body},)
+           this._callSubscriber(this._state)
        }
     }
 }
@@ -65,6 +74,19 @@ export const updateNewPostTextActionCreator = (text) => {
     return {
         type: UPDATE_NEW_POST_TEXT,
         text
+    }
+}
+
+export const sendMessageCreator = () => {
+    return {
+        type: SEND_MESSAGE
+    }
+}
+
+export const updateNewMessageBodyCreator = (body) => {
+    return {
+        type: UPDATE_NEW_MESSAGE_BODY,
+        body
     }
 }
 
