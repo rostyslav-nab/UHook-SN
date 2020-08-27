@@ -5,7 +5,7 @@ import {Navbar} from "./components/Navbar/Navbar"
 import {Profile} from "./components/Profile/Profile"
 import {Route} from "react-router-dom"
 import {Footer} from "./components/Footer/Footer"
-import {Dialogs} from "./components/Dialogs/Dialogs"
+import {DialogsContainer} from "./components/Dialogs/DialogsContainer"
 
 
 export const App = (props) => {
@@ -20,8 +20,8 @@ export const App = (props) => {
                 </div>
                 <div className="col-10 content">
                     <Route path='/profile'
-                           render={() => <Profile profilePage={props.state.profilePage} dispatch={props.dispatch}/>}/>
-                    <Route path='/dialogs' render={() => <Dialogs store={props.store}/>}/>
+                           render={() => <Profile store={props.store}/>}/>
+                    <Route path='/dialogs' render={() => <DialogsContainer store={props.store}/>}/>
                 </div>
             </div>
             <div className="row">
