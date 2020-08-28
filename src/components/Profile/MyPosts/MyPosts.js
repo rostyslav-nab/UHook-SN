@@ -1,7 +1,6 @@
 import React from "react"
 import classes from './MyPosts.module.scss'
 import {Post} from "./Post/Post"
-import {addPostActionCreator, updateNewPostTextActionCreator} from "../../redux/profileReducer"
 
 export const MyPosts = (props) => {
     let postsElements = props.posts.map((post) => <Post key={post.id} message={post.message}

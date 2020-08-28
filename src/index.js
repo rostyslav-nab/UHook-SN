@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom'
 import {App} from './App'
 import {BrowserRouter} from "react-router-dom"
 import {store} from './components/redux/redux-store'
+import {Provider} from "react-redux"
 
 
 
@@ -11,7 +12,9 @@ let app = (state) =>{
     return (
         <React.StrictMode>
             <BrowserRouter>
-                <App state={state} dispatch={store.dispatch.bind(store)} store={store} />
+                <Provider store={store}>
+                    <App state={state} dispatch={store.dispatch.bind(store)} store={store} />
+                </Provider>
             </BrowserRouter>
         </React.StrictMode>
     )
