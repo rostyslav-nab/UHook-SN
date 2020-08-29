@@ -21,6 +21,12 @@ export const Navbar = () => {
                     </li>
                     <li>
                         <div className={classes.activeMenuButton}>
+                            <img src="https://cdn0.iconfinder.com/data/icons/users-android-l-lollipop-icon-pack/24/group-16.png" alt="users"/>
+                            <NavLink to="/users" activeClassName={classes.active}>Users</NavLink>
+                        </div>
+                    </li>
+                    <li>
+                        <div className={classes.activeMenuButton}>
                             <img src="https://cdn0.iconfinder.com/data/icons/zondicons/20/news-paper-16.png" alt="news"/>
                             <NavLink to="/news" activeClassName={classes.active}>News</NavLink>
                         </div>

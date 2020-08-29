@@ -1,0 +1,37 @@
+.usersList {
+  margin-top: 20px;
+}
+
+.userCard {
+
+  img {
+    height: 120px;
+    width: 100px;
+    object-fit: cover;
+    border-radius: 15px;
+    align-items: center;
+    display: block;
+    margin: 0 auto;
+  }
+}
+
+.userDescription {
+  h4 {
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  button{
+    display: block;
+    margin: 10px auto;
+  }
+}
+
+.userLocation {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.userStatus {
+  text-align: center;
+}

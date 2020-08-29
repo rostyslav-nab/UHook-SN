@@ -6,6 +6,7 @@ import {Profile} from "./components/Profile/Profile"
 import {Route} from "react-router-dom"
 import {Footer} from "./components/Footer/Footer"
 import {DialogsContainer} from "./components/Dialogs/DialogsContainer"
+import {UsersContainer} from "./components/Users/UsersContainer";
 
 
 export const App = (props) => {
@@ -22,6 +23,7 @@ export const App = (props) => {
                     <Route path='/profile'
                            render={() => <Profile store={props.store}/>}/>
                     <Route path='/dialogs' render={() => <DialogsContainer store={props.store}/>}/>
+                    <Route path='/users' render={() => <UsersContainer />}/>
                 </div>
             </div>
             <div className="row">
