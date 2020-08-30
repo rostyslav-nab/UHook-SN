@@ -1,24 +1,19 @@
-import React from "react"
+import React, {useEffect} from "react"
 import classes from './Users.module.scss'
 import * as axios from "axios"
 import noPhoto from '../../assets/notPhoto.png'
 
 export const Users = (props) => {
 
-    let getUsers = () => {
-        if (props.users.length === 0) {
-            axios.get('https://social-network.samuraijs.com/api/1.0/users')
-                .then(res => {
-                    props.setUsers(res.data.items)
-                    console.log(res.data.items)
-                })
-        }
-
-    }
+    useEffect(() => {
+        axios.get('https://social-network.samuraijs.com/api/1.0/users')
+            .then(res => {
+                props.setUsers(res.data.items)
+            })
+    }, [])
 
     return (
         <div>
-            <button onClick={getUsers} className={'btn btn-primary'}>Get Users</button>
             {
                 props.users.map(user =>
                     <div key={user.id} className={classes.usersList}>
