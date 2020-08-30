@@ -6,14 +6,36 @@ import noPhoto from '../../assets/notPhoto.png'
 export const Users = (props) => {
 
     useEffect(() => {
-        axios.get('https://social-network.samuraijs.com/api/1.0/users')
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${props.currentPage}&count=${props.pageSize}`)
             .then(res => {
                 props.setUsers(res.data.items)
+                //props.setTotalUsersCount(res.data.totalCount)
             })
     }, [])
 
+    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
+
+    let pages = []
+    for (let i = 1; i <= pagesCount; i++) {
+        pages.push(i)
+    }
+
+    const onPageChanged = (pageNumber) => {
+        props.setCurrentPage(pageNumber)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${props.pageSize}`)
+            .then(res => {
+                props.setUsers(res.data.items)
+            })
+    }
+
     return (
         <div>
+            <div>
+                {
+                    pages.map(p => <span className={props.currentPage === p && classes.selectedPage}
+                                         onClick={() => onPageChanged(p)}> {p}</span>)
+                }
+            </div>
             {
                 props.users.map(user =>
                     <div key={user.id} className={classes.usersList}>
