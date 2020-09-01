@@ -1,10 +1,11 @@
-import {FOLLOW, SET_CURRENT_PAGE, SET_TOTAL_USERS_COUNT, SET_USERS, UNFOLLOW} from "../../types"
+import {FOLLOW, SET_CURRENT_PAGE, SET_TOTAL_USERS_COUNT, SET_USERS, TOGGLE_IS_FETCHING, UNFOLLOW} from "../../types"
 
 let initialState = {
     users: [],
     pageSize: 5,
     totalUsersCount: 200,
-    currentPage: 3
+    currentPage: 1,
+    isFetching: false
 }
 
 export const usersReducer = (state = initialState, action) => {
@@ -36,6 +37,8 @@ export const usersReducer = (state = initialState, action) => {
             return {...state, currentPage: action.currentPage}
         case SET_TOTAL_USERS_COUNT:
             return {...state, totalUsersCount: action.totalUsersCount}
+        case TOGGLE_IS_FETCHING:
+            return {...state, isFetching: action.isFetching}
         default:
             return state
     }
@@ -71,6 +74,12 @@ export const setUsersTotalCountAC = (totalUsersCount) => {
     return {
         type: SET_TOTAL_USERS_COUNT,
         totalUsersCount
+    }
+}
+export const toggleIsFetchingAC = (isFetching) => {
+    return {
+        type: TOGGLE_IS_FETCHING,
+        isFetching
     }
 }
 
