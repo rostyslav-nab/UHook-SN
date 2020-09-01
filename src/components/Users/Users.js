@@ -53,7 +53,8 @@ export const Users = (props) => {
                                         <h4>{user.name}</h4>
                                         <div className={classes.userLocation}>
                                             <span>City: {"user.location.city"}</span>
-                                            {/*<span>Country: {user.location.country}</span>*/}
+                                            <span>Country: {"user.location.country"}</span>
+                                            <span>User</span>
                                         </div>
                                         <div className={classes.userStatus}>
                                             <span>Status: {user.status != null ? user.status : 'no status...'}</span>
@@ -72,8 +73,6 @@ export const Users = (props) => {
                     }
                 </div>}
             </div>
-
-
         </div>
     )
 }
