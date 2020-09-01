@@ -52,7 +52,7 @@ export const Users = (props) => {
                                     <div className={classes.userDescription}>
                                         <h4>{user.name}</h4>
                                         <div className={classes.userLocation}>
-                                            {/*<span>City: {user.location.city}</span>*/}
+                                            <span>City: {"user.location.city"}</span>
                                             {/*<span>Country: {user.location.country}</span>*/}
                                         </div>
                                         <div className={classes.userStatus}>
