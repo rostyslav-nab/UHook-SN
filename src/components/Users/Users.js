@@ -3,6 +3,7 @@ import classes from './Users.module.scss'
 import * as axios from "axios"
 import noPhoto from '../../assets/notPhoto.png'
 import {Loader} from "../common/loader/Loader"
+import {NavLink} from "react-router-dom";
 
 export const Users = (props) => {
 
@@ -48,7 +49,9 @@ export const Users = (props) => {
                         props.users.map(user =>
                             <div key={user.id} className={classes.usersList}>
                                 <div className={classes.userCard}>
-                                    <img src={user.photos.small != null ? user.photos.small : noPhoto} alt="userAva"/>
+                                    <NavLink to={`/profile/${user.id}`}>
+                                        <img src={user.photos.small != null ? user.photos.small : noPhoto} alt="userAva"/>
+                                    </NavLink>
                                     <div className={classes.userDescription}>
                                         <h4>{user.name}</h4>
                                         <div className={classes.userLocation}>

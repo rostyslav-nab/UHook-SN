@@ -1,4 +1,4 @@
-import {ADD_POST, UPDATE_NEW_POST_TEXT} from "../../types"
+import {ADD_POST, SET_USER_PROFILE, UPDATE_NEW_POST_TEXT} from "../../types"
 
 let initialState = {
     posts: [
@@ -6,7 +6,8 @@ let initialState = {
         {id: 2, message: 'The day was good', likesCount: 14},
         {id: 3, message: 'Thanks React!!!', likesCount: 1}
     ],
-    newPostText: 'Social Network Lega'
+    newPostText: 'Social Network UHook',
+    profile: null
 }
 
 export const profileReducer = (state = initialState, action) => {
@@ -30,6 +31,12 @@ export const profileReducer = (state = initialState, action) => {
                 newPostText: action.text
             }
         }
+        case SET_USER_PROFILE: {
+            return  {
+                ...state,
+                profile: action.profile
+            }
+        }
         default:
             return state
     }
@@ -45,5 +52,11 @@ export const updateNewPostTextActionCreator = (text) => {
     return {
         type: UPDATE_NEW_POST_TEXT,
         text
+    }
+}
+export const setUserProfile = (profile) => {
+    return {
+        type: SET_USER_PROFILE,
+        profile
     }
 }

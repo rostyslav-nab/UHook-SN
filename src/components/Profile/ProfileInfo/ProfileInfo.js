@@ -1,7 +1,11 @@
 import React from "react"
 import classes from './ProfileInfo.module.scss'
+import {Loader} from "../../common/loader/Loader";
 
-export const ProfileInfo = () => {
+export const ProfileInfo = (props) => {
+    if(!props.profile){
+        return <Loader/>
+    }
     return(
         <div className={classes.avaDescriptionWrapper}>
             <div className={classes.backgroundTitle}>
@@ -13,6 +17,7 @@ export const ProfileInfo = () => {
                 <h1>Josephine Williams</h1>
                 <p>React/Redux Developer</p>
             </div>
+            <img src={props.profile.photos.large}/>
             <hr/>
         </div>
 
