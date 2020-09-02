@@ -9,7 +9,7 @@ import {UsersContainer} from "./components/Users/UsersContainer"
 import ProfileContainer from "./components/Profile/ProfileContainer"
 
 
-export const App = (props) => {
+export const App = () => {
     return (
         <div className='appWrapper'>
             <div className="row">
@@ -20,7 +20,7 @@ export const App = (props) => {
                     <Navbar/>
                 </div>
                 <div className="col-10 content">
-                    <Route path='/profile'
+                    <Route path='/profile/:userId?'
                            render={() => <ProfileContainer />}/>
                     <Route path='/dialogs' render={() => <DialogsContainer />}/>
                     <Route path='/users' render={() => <UsersContainer />}/>
@@ -31,7 +31,6 @@ export const App = (props) => {
                     <Footer/>
                 </div>
             </div>
-
         </div>
     )
 }
