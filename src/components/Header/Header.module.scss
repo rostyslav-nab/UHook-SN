@@ -20,9 +20,14 @@
   }
 }
 
-.topTitle{
-  font-size: 25px;
-  color: #1e24ff;
-  font-weight: bold;
-  margin: 10px 0 10px 45px;
+
+.loginBlock {
+  margin-left: 30%;
+  a {
+    text-decoration: none;
+    color: #1e24ff;
+    font-weight: bold;
+  }
+
+  margin-top: 20px;
 }
