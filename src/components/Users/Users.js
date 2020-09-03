@@ -3,18 +3,17 @@ import classes from './Users.module.scss'
 import * as axios from "axios"
 import noPhoto from '../../assets/notPhoto.png'
 import {Loader} from "../common/loader/Loader"
-import {NavLink} from "react-router-dom";
+import {NavLink} from "react-router-dom"
+import {UsersAPI} from "../api/api"
 
 export const Users = (props) => {
 
     useEffect(() => {
         props.toggleIsFetching(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${props.currentPage}&count=${props.pageSize}`,{
-            withCredentials: true
-        })
-            .then(res => {
+        UsersAPI.getUsers(props.currentPage, props.pageSize)
+            .then(data => {
                 props.toggleIsFetching(false)
-                props.setUsers(res.data.items)
+                props.setUsers(data.items)
                 //props.setTotalUsersCount(res.data.totalCount)
             })
     }, [])
@@ -29,15 +28,12 @@ export const Users = (props) => {
     const onPageChanged = (pageNumber) => {
         props.setCurrentPage(pageNumber)
         props.toggleIsFetching(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${props.pageSize}`, {
-            withCredentials: true
-        })
-            .then(res => {
-                props.setUsers(res.data.items)
+        UsersAPI.getUsers(pageNumber, props.pageSize)
+            .then(data => {
+                props.setUsers(data.items)
                 props.toggleIsFetching(false)
             })
     }
-
 
     return (
         <div>
@@ -66,27 +62,17 @@ export const Users = (props) => {
                                         </div>
                                         {user.followed
                                             ? <button className={'btn btn-danger'} onClick={() => {
-                                                axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {
-                                                    withCredentials: true,
-                                                    headers: {
-                                                        'API-KEY': '2f5687fa-c8ce-42e6-ac5d-594a3169b38f'
-                                                    }
-                                                })
-                                                    .then(res => {
-                                                        if (res.data.resultCode === 0){
+                                                UsersAPI.unfollow(user.id)
+                                                    .then(data => {
+                                                        if (data.resultCode === 0){
                                                             props.unFollow(user.id)
                                                         }
                                                     })
                                             }}>Unfollow</button>
                                             : <button className={'btn btn-primary'} onClick={() => {
-                                                axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {}, {
-                                                    withCredentials: true,
-                                                    headers: {
-                                                        'API-KEY': '2f5687fa-c8ce-42e6-ac5d-594a3169b38f'
-                                                    }
-                                                })
-                                                    .then(res => {
-                                                        if (res.data.resultCode === 0){
+                                                UsersAPI.follow(user.id)
+                                                    .then(data => {
+                                                        if (data.resultCode === 0){
                                                             props.follow(user.id)
                                                         }
                                                     })
