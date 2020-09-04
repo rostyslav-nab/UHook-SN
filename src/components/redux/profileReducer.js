@@ -1,4 +1,5 @@
 import {ADD_POST, SET_USER_PROFILE, UPDATE_NEW_POST_TEXT} from "../../types"
+import {UsersAPI} from "../api/api";
 
 let initialState = {
     posts: [
@@ -54,9 +55,16 @@ export const updateNewPostTextActionCreator = (text) => {
         text
     }
 }
-export const setUserProfile = (profile) => {
+const setUserProfile = (profile) => {
     return {
         type: SET_USER_PROFILE,
         profile
     }
+}
+
+export const getUserProfile = (userId) => (dispatch) => {
+    UsersAPI.getProfile(userId)
+        .then(res => {
+            dispatch(setUserProfile(res.data))
+        })
 }
