@@ -1,5 +1,5 @@
 import {SET_USER_DATA} from "../../types"
-import {AuthAPI} from "../api/api";
+import {AuthAPI} from "../api/api"
 
 let initialState = {
     userId: null,

@@ -1,5 +1,5 @@
 import {ADD_POST, SET_USER_PROFILE, UPDATE_NEW_POST_TEXT} from "../../types"
-import {UsersAPI} from "../api/api";
+import {UsersAPI} from "../api/api"
 
 let initialState = {
     posts: [
