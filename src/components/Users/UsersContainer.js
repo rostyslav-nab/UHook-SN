@@ -6,6 +6,7 @@ import {
     toggleFollowingInProgress,
     unFollow
 } from "../redux/usersReducer"
+import {compose} from "redux"
 
 let mapStateToProps = (state) => {
     return {
@@ -18,10 +19,12 @@ let mapStateToProps = (state) => {
     }
 }
 
-export const UsersContainer = connect(mapStateToProps, {
-    follow,
-    unFollow,
-    setCurrentPage,
-    toggleFollowingInProgress,
-    getUsers
-})(Users)
+export const UsersContainer = compose(
+    connect(mapStateToProps, {
+        follow,
+        unFollow,
+        setCurrentPage,
+        toggleFollowingInProgress,
+        getUsers
+    })
+)(Users)
