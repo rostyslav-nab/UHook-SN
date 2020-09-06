@@ -18,7 +18,7 @@ export const ProfileInfo = (props) => {
                 <h1>{props.profile.fullName}</h1>
                 <p>React/Redux Developer</p>
                 <p>{props.profile.aboutMe}</p>
-                <ProfileStatus status={'Hi guy'}/>
+                <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
             </div>
             <hr/>
         </div>

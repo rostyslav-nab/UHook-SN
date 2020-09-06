@@ -4,6 +4,8 @@ import classes from './ProfileStatus.module.scss'
 export const ProfileStatus = (props) => {
 
     const [editMode, setEditMode] = useState(false)
+    const [status, setStatus] = useState(props.status)
+
 
     const activateEditMode = () => {
         setEditMode(true)
@@ -11,14 +13,24 @@ export const ProfileStatus = (props) => {
 
     const deactivateEditMode = () => {
         setEditMode(false)
+        props.updateStatus(status)
+    }
+
+    const onStatusChange = (e) => {
+        setStatus(e.target.value)
     }
 
     return (
         <div className={classes.status}>
-            {!editMode && <span onDoubleClick={activateEditMode}>{props.status}</span>}
-            {editMode && <div className={classes.inputField}>
-                <input type="text" autoFocus={true} value={props.status} className="form-control" onBlur={deactivateEditMode}/>
-            </div>}
+            {!editMode &&
+                <span onDoubleClick={activateEditMode}>{props.status || 'No status'}</span>
+            }
+
+            {editMode &&
+                <div className={classes.inputField}>
+                    <input type="text" onChange={onStatusChange} autoFocus={true} value={status} className="form-control" onBlur={deactivateEditMode}/>
+                </div>
+            }
         </div>
     )
 }

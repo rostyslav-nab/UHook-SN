@@ -1,5 +1,5 @@
-import {ADD_POST, SET_USER_PROFILE, UPDATE_NEW_POST_TEXT} from "../../types"
-import {UsersAPI} from "../api/api"
+import {ADD_POST, SET_STATUS, SET_USER_PROFILE, UPDATE_NEW_POST_TEXT} from "../../types"
+import {ProfileAPI, UsersAPI} from "../api/api"
 
 let initialState = {
     posts: [
@@ -8,7 +8,8 @@ let initialState = {
         {id: 3, message: 'Thanks React!!!', likesCount: 1}
     ],
     newPostText: 'Social Network UHook',
-    profile: null
+    profile: null,
+    status: ''
 }
 
 export const profileReducer = (state = initialState, action) => {
@@ -38,6 +39,12 @@ export const profileReducer = (state = initialState, action) => {
                 profile: action.profile
             }
         }
+        case SET_STATUS: {
+            return  {
+                ...state,
+                status: action.status
+            }
+        }
         default:
             return state
     }
@@ -62,9 +69,34 @@ const setUserProfile = (profile) => {
     }
 }
 
+const setStatus = (status) => {
+    return {
+        type: SET_STATUS,
+        status
+    }
+}
+
 export const getUserProfile = (userId) => (dispatch) => {
     UsersAPI.getProfile(userId)
         .then(res => {
             dispatch(setUserProfile(res.data))
+        })
+}
+
+
+
+export const getStatus = (userId) => (dispatch) => {
+    ProfileAPI.getStatus(userId)
+        .then(res => {
+            dispatch(setStatus(res.data))
+        })
+}
+
+export const updateStatus = (status) => (dispatch) => {
+    ProfileAPI.updateStatus(status)
+        .then(res => {
+            if(res.data.resultCode === 0){
+                dispatch(setStatus(status))
+            }
         })
 }
