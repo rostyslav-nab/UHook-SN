@@ -1,6 +1,7 @@
 import React from "react"
 import classes from './ProfileInfo.module.scss'
-import {Loader} from "../../common/loader/Loader";
+import {Loader} from "../../common/loader/Loader"
+import {ProfileStatus} from "../../Status/ProfileStatus"
 
 export const ProfileInfo = (props) => {
     if(!props.profile){
@@ -17,6 +18,7 @@ export const ProfileInfo = (props) => {
                 <h1>{props.profile.fullName}</h1>
                 <p>React/Redux Developer</p>
                 <p>{props.profile.aboutMe}</p>
+                <ProfileStatus status={'Hi guy'}/>
             </div>
             <hr/>
         </div>
