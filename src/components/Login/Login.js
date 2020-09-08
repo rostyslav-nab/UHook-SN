@@ -1,8 +1,10 @@
 import React from "react"
 import classes from './Login.module.scss'
 import {Field, reduxForm} from "redux-form"
+import {Input} from "../common/FormsControls/FormsControls";
+import {requiredFields} from "../../utils/validators/validators";
 
-export const Login = (props) => {
+export const Login = () => {
 
     const onSubmit = (formData) => {
         console.log(formData)
@@ -23,15 +25,17 @@ const LoginForm = (props) => {
         <form onSubmit={props.handleSubmit}>
             <div className="form-group">
                 <label htmlFor="login">Login</label>
-                <Field component={'input'} name={'login'} className="form-control" id="login" aria-describedby="loginHelp" />
-                <small id="loginHelp" className="form-text text-muted">Please, enter your Login</small>
+                <Field component={Input} name={'login'} className="form-control"
+                       validate={[requiredFields]}/>
             </div>
             <div className="form-group">
                 <label htmlFor="password">Password</label>
-                <Field component={'input'} name={'password'} className="form-control" id="password" />
+                <Field component={Input} name={'password'} className="form-control"
+                       validate={[requiredFields]}
+                       id="password" />
             </div>
             <div className="form-group form-check">
-                <Field component={'input'} name={'rememberMe'} type="checkbox" className="form-check-input" id="exampleCheck1" />
+                <Field component={Input} name={'rememberMe'} type="checkbox" className="form-check-input" id="exampleCheck1" />
                 <label className="form-check-label" htmlFor="exampleCheck1">Remember me</label>
             </div>
             <button className="btn btn-primary">Login</button>

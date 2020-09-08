@@ -2,6 +2,7 @@ import React from "react"
 import classes from './ProfileInfo.module.scss'
 import {Loader} from "../../common/loader/Loader"
 import {ProfileStatus} from "../../Status/ProfileStatus"
+import notPhoto from '../../../assets/notPhoto2.png'
 
 export const ProfileInfo = (props) => {
     if(!props.profile){
@@ -14,7 +15,8 @@ export const ProfileInfo = (props) => {
             </div>
 
             <div className={classes.mainInfo}>
-                <img src={props.profile.photos.large} alt="avatar"/>
+                {!props.profile.photos.large ? <img src={notPhoto} alt="notPhoto"/>
+                : <img src={props.profile.photos.large} alt="avatar"/>}
                 <h1>{props.profile.fullName}</h1>
                 <p>React/Redux Developer</p>
                 <p>{props.profile.aboutMe}</p>
