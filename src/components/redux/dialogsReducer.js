@@ -15,22 +15,15 @@ let initialState = {
         {id: 2, message: 'I like React and u??'},
         {id: 3, message: 'Samurai yoy'},
         {id: 4, message: 'My life my rules'}
-    ],
-    newMessageBody: ''
+    ]
 }
 
 export const dialogsReducer = (state = initialState, action) => {
     switch (action.type) {
-        case UPDATE_NEW_MESSAGE_BODY:
-            return  {
-                ...state,
-                newMessageBody: action.body
-            }
         case SEND_MESSAGE:
-            let body = state.newMessageBody
+            let body = action.newMessageBody
             return  {
                 ...state,
-                newMessageBody: '',
                 messages: [...state.messages, {id: Date.now(), message: body}]
             }
         default:
@@ -39,15 +32,9 @@ export const dialogsReducer = (state = initialState, action) => {
 }
 
 
-export const sendMessageCreator = () => {
+export const sendMessageCreator = (newMessageBody) => {
     return {
-        type: SEND_MESSAGE
-    }
-}
-
-export const updateNewMessageBodyCreator = (body) => {
-    return {
-        type: UPDATE_NEW_MESSAGE_BODY,
-        body
+        type: SEND_MESSAGE,
+        newMessageBody
     }
 }

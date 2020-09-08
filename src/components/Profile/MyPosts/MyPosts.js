@@ -1,20 +1,14 @@
 import React from "react"
 import classes from './MyPosts.module.scss'
 import {Post} from "./Post/Post"
+import {Field, reduxForm} from "redux-form"
 
 export const MyPosts = (props) => {
     let postsElements = props.posts.map((post) => <Post key={post.id} message={post.message}
                                                         likesCount={post.likesCount}/>)
 
-    let newPostElement = React.createRef()
-
-    const onAddPost = () => {
-        props.addPost()
-    }
-
-    const onPostChange = (e) => {
-        let text = e.target.value
-        props.updateNewPostText(text)
+    const addPost = (values) => {
+        props.addPost(values.newPostText)
     }
 
     return (
@@ -24,14 +18,7 @@ export const MyPosts = (props) => {
                     <div className="col-7">
                         <div className={classes.leftBlock}>
                             <div className={classes.createPost}>
-                                <div className={classes.userInfo}>
-                                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80" alt="avatar"/>
-                                    <textarea className="form-control" onChange={onPostChange} ref={newPostElement}
-                                              value={props.newPostText}/>
-                                </div>
-                                <div>
-                                    <button className='btn btn-info' onClick={onAddPost}>Add Post</button>
-                                </div>
+                                <AddPostFormRedux onSubmit={addPost}/>
                             </div>
                             {postsElements}
                         </div>
@@ -44,3 +31,23 @@ export const MyPosts = (props) => {
         </div>
     )
 }
+
+// ------------------  ReduxForm  -----------------------
+
+const AddPostForm = (props) => {
+    return (
+        <form onSubmit={props.handleSubmit}>
+            <div className={classes.userInfo}>
+                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80" alt="avatar"/>
+                <Field component='textarea' name='newPostText' className="form-control" />
+            </div>
+            <div>
+                <button className='btn btn-info'>Add Post</button>
+            </div>
+        </form>
+    )
+}
+
+const AddPostFormRedux = reduxForm({
+    form: 'addPostForm'
+})(AddPostForm)

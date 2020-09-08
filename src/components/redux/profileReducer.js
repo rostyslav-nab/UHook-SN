@@ -1,4 +1,4 @@
-import {ADD_POST, SET_STATUS, SET_USER_PROFILE, UPDATE_NEW_POST_TEXT} from "../../types"
+import {ADD_POST, SET_STATUS, SET_USER_PROFILE} from "../../types"
 import {ProfileAPI, UsersAPI} from "../api/api"
 
 let initialState = {
@@ -7,7 +7,6 @@ let initialState = {
         {id: 2, message: 'The day was good', likesCount: 14},
         {id: 3, message: 'Thanks React!!!', likesCount: 1}
     ],
-    newPostText: 'Social Network UHook',
     profile: null,
     status: ''
 }
@@ -18,19 +17,13 @@ export const profileReducer = (state = initialState, action) => {
         case ADD_POST: {
             let newPost = {
                 id: Date.now(),
-                message: state.newPostText,
+                message: action.newPostText,
                 likesCount: 5
             }
             return  {
                 ...state,
                 posts: [...state.posts, newPost],
                 newPostText: ''
-            }
-        }
-        case UPDATE_NEW_POST_TEXT: {
-            return  {
-                ...state,
-                newPostText: action.text
             }
         }
         case SET_USER_PROFILE: {
@@ -50,18 +43,13 @@ export const profileReducer = (state = initialState, action) => {
     }
 }
 
-export const addPostActionCreator = () => {
+export const addPostActionCreator = (newPostText) => {
     return {
-        type: ADD_POST
+        type: ADD_POST,
+        newPostText
     }
 }
 
-export const updateNewPostTextActionCreator = (text) => {
-    return {
-        type: UPDATE_NEW_POST_TEXT,
-        text
-    }
-}
 const setUserProfile = (profile) => {
     return {
         type: SET_USER_PROFILE,
