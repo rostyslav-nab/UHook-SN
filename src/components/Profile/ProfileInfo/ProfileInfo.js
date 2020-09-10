@@ -11,9 +11,8 @@ export const ProfileInfo = (props) => {
     return (
         <div className={classes.avaDescriptionWrapper}>
             <div className={classes.backgroundTitle}>
-                <img src="https://images.unsplash.com/photo-1446776899648-aa78eefe8ed0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1052&q=80" alt="backgroundTitle"/>
+                <img src="https://images.unsplash.com/photo-1584947114153-e9a2a9ec1501?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80" alt="backgroundTitle"/>
             </div>
-
             <div className={classes.mainInfo}>
                 {!props.profile.photos.large ? <img src={notPhoto} alt="notPhoto"/>
                 : <img src={props.profile.photos.large} alt="avatar"/>}
@@ -24,6 +23,5 @@ export const ProfileInfo = (props) => {
             </div>
             <hr/>
         </div>
-
     )
 }

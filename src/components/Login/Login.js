@@ -14,8 +14,9 @@ const Login = (props) => {
     }
 
     if(props.isAuth){
-        return <Redirect to={'/profile'}/>
+        return <Redirect to='/profile'/>
     }
+
     return (
         <div className={classes.loginWrapper}>
             <h1>Login</h1>
@@ -32,12 +33,12 @@ const LoginForm = (props) => {
         <form onSubmit={props.handleSubmit}>
             <div className="form-group">
                 <label htmlFor="login">Login</label>
-                <Field component={Input} name={'email'} className="form-control" placeholder='Email'
+                <Field component={Input} name='email' className="form-control" placeholder='Email'
                        validate={[requiredFields]}/>
             </div>
             <div className="form-group">
                 <label htmlFor="password">Password</label>
-                <Field component={Input} type='password' name={'password'} className="form-control"
+                <Field component={Input} type='password' name='password' className="form-control"
                        validate={[requiredFields]} placeholder='Password'
                        id="password" />
             </div>
@@ -45,6 +46,7 @@ const LoginForm = (props) => {
                 <Field component={Input} name={'rememberMe'} type="checkbox" className="form-check-input" id="exampleCheck1" />
                 <label className="form-check-label" htmlFor="exampleCheck1">Remember me</label>
             </div>
+            {props.error && <div className="alert alert-danger" role="alert">{props.error}</div>}
             <button className="btn btn-primary">Login</button>
         </form>
     )
