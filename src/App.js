@@ -1,16 +1,30 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import './App.css'
 import {Navbar} from "./components/Navbar/Navbar"
-import {Route} from "react-router-dom"
+import {Route, withRouter} from "react-router-dom"
 import {Footer} from "./components/Footer/Footer"
 import {DialogsContainer} from "./components/Dialogs/DialogsContainer"
 import {UsersContainer} from "./components/Users/UsersContainer"
 import ProfileContainer from "./components/Profile/ProfileContainer"
 import HeaderContainer from "./components/Header/HeaderContainer"
 import Login from "./components/Login/Login"
+import {connect} from "react-redux"
+import {compose} from "redux"
+import {initializeApp} from "./components/redux/appReducer"
+import {MainLoader} from "./components/common/MainLoader/MainLoader"
 
 
-export const App = () => {
+const App = (props) => {
+
+    useEffect(()=> {
+        props.initializeApp()
+    }, [])
+
+
+    if(!props.initialized) {
+        return <MainLoader/>
+    }
+
     return (
         <div className='appWrapper'>
             <div className="row">
@@ -36,3 +50,12 @@ export const App = () => {
         </div>
     )
 }
+
+const mapStateToProps = (state) => ({
+    initialized: state.app.initialized
+})
+
+export default compose(
+    withRouter,
+    connect(mapStateToProps, {initializeApp})
+)(App)
