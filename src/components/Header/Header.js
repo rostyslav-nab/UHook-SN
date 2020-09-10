@@ -8,8 +8,9 @@ export const Header = (props) => {
             <img src="https://cdn1.savepice.ru/uploads/2020/8/22/18be59617748ce22847857f851fc47b7-full.png" alt="mainLogo"/>
             <input type="text" placeholder='Search for Friends, Videos and more...' className='form-control'/>
             <div className={classes.loginBlock}>
-                {props.isAuth ? props.login : <NavLink to={'/login'}>Login</NavLink>}
-
+                {props.isAuth
+                    ? <div>{props.login} <button className='btn btn-danger btn-sm' onClick={props.logout}>Logout</button> </div>
+                    : <NavLink to={'/login'}>Login</NavLink>}
             </div>
         </div>
     )

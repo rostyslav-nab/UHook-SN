@@ -1,13 +1,20 @@
 import React from "react"
 import classes from './Login.module.scss'
 import {Field, reduxForm} from "redux-form"
-import {Input} from "../common/FormsControls/FormsControls";
-import {requiredFields} from "../../utils/validators/validators";
+import {Input} from "../common/FormsControls/FormsControls"
+import {requiredFields} from "../../utils/validators/validators"
+import {connect} from "react-redux"
+import {login} from "../redux/authReducer"
+import {Redirect} from "react-router-dom"
 
-export const Login = () => {
+const Login = (props) => {
 
     const onSubmit = (formData) => {
-        console.log(formData)
+        props.login(formData.email, formData.password, formData.rememberMe)
+    }
+
+    if(props.isAuth){
+        return <Redirect to={'/profile'}/>
     }
     return (
         <div className={classes.loginWrapper}>
@@ -25,13 +32,13 @@ const LoginForm = (props) => {
         <form onSubmit={props.handleSubmit}>
             <div className="form-group">
                 <label htmlFor="login">Login</label>
-                <Field component={Input} name={'login'} className="form-control"
+                <Field component={Input} name={'email'} className="form-control" placeholder='Email'
                        validate={[requiredFields]}/>
             </div>
             <div className="form-group">
                 <label htmlFor="password">Password</label>
-                <Field component={Input} name={'password'} className="form-control"
-                       validate={[requiredFields]}
+                <Field component={Input} type='password' name={'password'} className="form-control"
+                       validate={[requiredFields]} placeholder='Password'
                        id="password" />
             </div>
             <div className="form-group form-check">
@@ -46,3 +53,11 @@ const LoginForm = (props) => {
 const LoginReduxForm = reduxForm({
     form: 'login'
 })(LoginForm)
+
+const mapStateToProps = (state) => {
+    return {
+        isAuth: state.auth.isAuth
+    }
+}
+
+export default connect(mapStateToProps, {login})(Login)
