@@ -1,4 +1,4 @@
-import {ADD_POST, SET_STATUS, SET_USER_PROFILE} from "../../types"
+import {ADD_POST, DELETE_POST, SET_STATUS, SET_USER_PROFILE} from "../../types"
 import {ProfileAPI, UsersAPI} from "../api/api"
 
 let initialState = {
@@ -20,22 +20,28 @@ export const profileReducer = (state = initialState, action) => {
                 message: action.newPostText,
                 likesCount: 5
             }
-            return  {
+            return {
                 ...state,
                 posts: [...state.posts, newPost],
                 newPostText: ''
             }
         }
         case SET_USER_PROFILE: {
-            return  {
+            return {
                 ...state,
                 profile: action.profile
             }
         }
         case SET_STATUS: {
-            return  {
+            return {
                 ...state,
                 status: action.status
+            }
+        }
+        case DELETE_POST: {
+            return {
+                ...state,
+                posts: state.posts.filter((p) => p.id !== action.postId)
             }
         }
         default:
@@ -49,6 +55,9 @@ export const addPostActionCreator = (newPostText) => {
         newPostText
     }
 }
+
+export const deletePost = (postId) => ({type: DELETE_POST, postId})
+
 
 const setUserProfile = (profile) => {
     return {
@@ -72,7 +81,6 @@ export const getUserProfile = (userId) => (dispatch) => {
 }
 
 
-
 export const getStatus = (userId) => (dispatch) => {
     ProfileAPI.getStatus(userId)
         .then(res => {
@@ -83,7 +91,7 @@ export const getStatus = (userId) => (dispatch) => {
 export const updateStatus = (status) => (dispatch) => {
     ProfileAPI.updateStatus(status)
         .then(res => {
-            if(res.data.resultCode === 0){
+            if (res.data.resultCode === 0) {
                 dispatch(setStatus(status))
             }
         })
