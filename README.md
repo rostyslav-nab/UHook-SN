@@ -33,3 +33,14 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
   * axios
   * SCSS
   * Redux-Form
+  * Reselect
+  
+  ## Profile 🚩
+  
+  ![Profile](https://cdn1.savepice.ru/uploads/2020/9/12/3ecbb57496931ee97f5bbec9a6eb2ffa-full.jpg)
+ 
+  ## Users 🚩
+  ![Users](https://cdn1.savepice.ru/uploads/2020/9/12/da973be90de681c9bcc7e662677d5e61-full.jpg)
+  
+  ## Login 🚩
+  ![Login](https://cdn1.savepice.ru/uploads/2020/9/12/bd49962fbce015fda9e7141138a00b60-full.jpg)
