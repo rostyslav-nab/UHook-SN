@@ -2,10 +2,10 @@ import React from "react"
 import classes from './MyPosts.module.scss'
 import {Post} from "./Post/Post"
 import {Field, reduxForm} from "redux-form"
-import {maxLengthCreator, requiredFields} from "../../../utils/validators/validators";
-import {Textarea} from "../../common/FormsControls/FormsControls";
+import {maxLengthCreator, requiredFields} from "../../../utils/validators/validators"
+import {Textarea} from "../../common/FormsControls/FormsControls"
 
-export const MyPosts = (props) => {
+export const MyPosts = React.memo((props) => {
     let postsElements = props.posts.map((post) => <Post key={post.id} message={post.message}
                                                         likesCount={post.likesCount}/>)
 
@@ -32,7 +32,7 @@ export const MyPosts = (props) => {
             </div>
         </div>
     )
-}
+})
 
 // ------------------  ReduxForm  -----------------------
 
