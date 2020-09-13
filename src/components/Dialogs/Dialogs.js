@@ -4,19 +4,18 @@ import {Dialog} from "./Dialog/Dialog"
 import {Message} from "./Message/Message"
 import {Redirect} from "react-router-dom"
 import {Field, reduxForm} from "redux-form"
-import {Textarea} from "../common/FormsControls/FormsControls";
-import {maxLengthCreator, requiredFields} from "../../utils/validators/validators";
+import {Textarea} from "../common/FormsControls/FormsControls"
+import {maxLengthCreator, requiredFields} from "../../utils/validators/validators"
 
-export const Dialogs = (props) => {
-    let state = props.dialogsPage
-    let dialogsElements = state.dialogs.map((dialog) => <Dialog name={dialog.name} id={dialog.id} key={dialog.id}/>)
-    let messageElements = state.messages.map((message) => <Message message={message.message} key={message.id}/>)
+export const Dialogs = ({dialogsPage, sendMessage, isAuth}) => {
+    let dialogsElements = dialogsPage.dialogs.map((dialog) => <Dialog name={dialog.name} id={dialog.id} key={dialog.id}/>)
+    let messageElements = dialogsPage.messages.map((message) => <Message message={message.message} key={message.id}/>)
 
     let addNewMessage = (values) => {
-        props.sendMessage(values.newMessageBody)
+        sendMessage(values.newMessageBody)
     }
 
-    if (!props.isAuth) {
+    if (!isAuth) {
         return <Redirect to={'/login'}/>
     }
 
@@ -47,9 +46,9 @@ export const Dialogs = (props) => {
 
 const maxLength100 = maxLengthCreator(100)
 
-const AddMessageForm = (props) => {
+const AddMessageForm = ({handleSubmit}) => {
     return (
-        <form onSubmit={props.handleSubmit}>
+        <form onSubmit={handleSubmit}>
             <div>
                 <Field component={Textarea} validate={[requiredFields, maxLength100]} name={'newMessageBody'} placeholder='Enter your message' className="form-control"/>
             </div>

@@ -3,10 +3,10 @@ import classes from './Profile.module.scss'
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo"
 import {MyPostContainer} from './MyPosts/MyPostsContainer'
 
-export const Profile = (props) => {
+export const Profile = ({profile, status, updateStatus}) => {
     return (
         <div className={classes.profileWrapper}>
-            <ProfileInfo profile={props.profile} status={props.status} updateStatus={props.updateStatus}/>
+            <ProfileInfo profile={profile} status={status} updateStatus={updateStatus}/>
             <MyPostContainer />
         </div>
     )

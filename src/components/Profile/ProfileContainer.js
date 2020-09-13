@@ -6,24 +6,24 @@ import {Redirect, withRouter} from "react-router-dom"
 import {WithAuthRedirect} from "../../hoc/withAuthRedirect"
 import {compose} from "redux"
 
-const ProfileContainer = (props) => {
+const ProfileContainer = ({authorizedUserId, getUserProfile, getStatus, isAuth, profile, status, updateStatus, ...props}) => {
     useEffect(() => {
         let userId = props.match.params.userId
         if(!userId) {
-            userId = props.authorizedUserId
+            userId = authorizedUserId
             if(!userId){
                 props.history.push('/login')
             }
         }
-        props.getUserProfile(userId)
-        props.getStatus(userId)
+        getUserProfile(userId)
+        getStatus(userId)
     }, [])
 
-    if(!props.isAuth) {
+    if(!isAuth) {
         return <Redirect to={'/login'}/>
     }
 
-    return <Profile {...props} profile={props.profile} status={props.status} updateStatus={props.updateStatus}/>
+    return <Profile {...props} profile={profile} status={status} updateStatus={updateStatus}/>
 }
 
 let mapStateToProps = (state) =>({

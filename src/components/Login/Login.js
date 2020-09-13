@@ -7,13 +7,13 @@ import {connect} from "react-redux"
 import {login} from "../redux/authReducer"
 import {Redirect} from "react-router-dom"
 
-const Login = (props) => {
+const Login = ({login, isAuth}) => {
 
     const onSubmit = (formData) => {
-        props.login(formData.email, formData.password, formData.rememberMe)
+        login(formData.email, formData.password, formData.rememberMe)
     }
 
-    if(props.isAuth){
+    if(isAuth){
         return <Redirect to='/profile'/>
     }
 
@@ -27,10 +27,10 @@ const Login = (props) => {
     )
 }
 
-const LoginForm = (props) => {
+const LoginForm = ({handleSubmit, error}) => {
 
     return (
-        <form onSubmit={props.handleSubmit}>
+        <form onSubmit={handleSubmit}>
             <div className="form-group">
                 <label htmlFor="login">Login</label>
                 <Field component={Input} name='email' className="form-control" placeholder='Email'
@@ -46,7 +46,7 @@ const LoginForm = (props) => {
                 <Field component={Input} name={'rememberMe'} type="checkbox" className="form-check-input" id="exampleCheck1" />
                 <label className="form-check-label" htmlFor="exampleCheck1">Remember me</label>
             </div>
-            {props.error && <div className="alert alert-danger" role="alert">{props.error}</div>}
+            {error && <div className="alert alert-danger" role="alert">{error}</div>}
             <button className="btn btn-primary">Login</button>
         </form>
     )

@@ -1,4 +1,4 @@
-import {SEND_MESSAGE, UPDATE_NEW_MESSAGE_BODY} from "../../types"
+import {SEND_MESSAGE} from "../../types"
 
 let initialState = {
     dialogs: [
@@ -32,9 +32,4 @@ export const dialogsReducer = (state = initialState, action) => {
 }
 
 
-export const sendMessageCreator = (newMessageBody) => {
-    return {
-        type: SEND_MESSAGE,
-        newMessageBody
-    }
-}
+export const sendMessageCreator = (newMessageBody) => ({type: SEND_MESSAGE, newMessageBody})

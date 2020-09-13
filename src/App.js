@@ -16,12 +16,12 @@ import {MainLoader} from "./components/common/MainLoader/MainLoader"
 
 const App = (props) => {
 
-    useEffect(()=> {
+    useEffect(() => {
         props.initializeApp()
     }, [])
 
 
-    if(!props.initialized) {
+    if (!props.initialized) {
         return <MainLoader/>
     }
 
@@ -36,16 +36,18 @@ const App = (props) => {
                 </div>
                 <div className="col-10 content">
                     <Route path='/profile/:userId?'
-                           render={() => <ProfileContainer />}/>
-                    <Route path='/dialogs' render={() => <DialogsContainer />}/>
-                    <Route path='/users' render={() => <UsersContainer />}/>
+                           render={() => <ProfileContainer/>}/>
+                    <Route path='/dialogs' render={() => <DialogsContainer/>}/>
+                    <Route path='/users' render={() => <UsersContainer/>}/>
                     <Route path='/login' render={() => <Login/>}/>
                 </div>
             </div>
-            <div className="row">
-                <div className="col-12">
-                    <Footer/>
-                </div>
+            <div className="navbar-fixed-bottom row-fluid">
+                <footer className="navbar-inner">
+                    <div className="container">
+                        <Footer/>
+                    </div>
+                </footer>
             </div>
         </div>
     )

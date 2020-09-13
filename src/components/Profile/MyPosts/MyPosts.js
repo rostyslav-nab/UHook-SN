@@ -5,12 +5,12 @@ import {Field, reduxForm} from "redux-form"
 import {maxLengthCreator, requiredFields} from "../../../utils/validators/validators"
 import {Textarea} from "../../common/FormsControls/FormsControls"
 
-export const MyPosts = React.memo((props) => {
-    let postsElements = props.posts.map((post) => <Post key={post.id} message={post.message}
+export const MyPosts = React.memo(({posts, addPost}) => {
+    let postsElements = posts.map((post) => <Post key={post.id} message={post.message}
                                                         likesCount={post.likesCount}/>)
 
-    const addPost = (values) => {
-        props.addPost(values.newPostText)
+    const onAddPost = (values) => {
+        addPost(values.newPostText)
     }
 
     return (
@@ -20,7 +20,7 @@ export const MyPosts = React.memo((props) => {
                     <div className="col-7">
                         <div className={classes.leftBlock}>
                             <div className={classes.createPost}>
-                                <AddPostFormRedux onSubmit={addPost}/>
+                                <AddPostFormRedux onSubmit={onAddPost}/>
                             </div>
                             {postsElements}
                         </div>
@@ -38,9 +38,9 @@ export const MyPosts = React.memo((props) => {
 
 const maxLength10 = maxLengthCreator(10)
 
-const AddPostForm = (props) => {
+const AddPostForm = ({handleSubmit}) => {
     return (
-        <form onSubmit={props.handleSubmit}>
+        <form onSubmit={handleSubmit}>
             <div className={classes.userInfo}>
                 <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80" alt="avatar"/>
                 <Field component={Textarea} name='newPostText' className="form-control" placeholder={'Put the post'}
