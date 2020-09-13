@@ -8,7 +8,7 @@ import {
     UNFOLLOW
 } from "../../types"
 import {UsersAPI} from "../api/api"
-import {updateObjectInArray} from "../../utils/objectsHelper";
+import {updateObjectInArray} from "../../utils/objectsHelper"
 
 let initialState = {
     users: [],
@@ -70,7 +70,8 @@ export const getUsers = (currentPage, pageSize) => {
         let data = await UsersAPI.getUsers(currentPage, pageSize)
         dispatch(toggleIsFetching(false))
         dispatch(setUsers(data.items))
-        //dispatch(setTotalUsersCount(res.data.totalCount))
+        dispatch(setUsersTotalCount(data.totalCount))
+
 
     }
 }

@@ -16,7 +16,7 @@ export const Users = ({currentPage, pageSize, totalUsersCount, isFetching, users
     return (
         <div>
             <Paginator currentPage={currentPage} pageSize={pageSize}
-                       totalUsersCount={totalUsersCount} onPageChanged={onPageChanged}/>
+                       totalItemsCount={totalUsersCount} onPageChanged={onPageChanged}/>
             <div>
                 {
                     isFetching ? <Loader/> :

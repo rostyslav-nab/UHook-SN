@@ -1,4 +1,30 @@
-.selectedPage {
-  font-weight: bold;
+.paginator {
+  cursor: pointer;
+  span{
+    display: inline-block;
+    height: 40px;
+    width: 40px;
+    margin-left: 10px;
+  }
+  button {
+    margin-left: 20px;
+  }
+
+  margin: 15px;
+  text-align: center;
+}
+.pageNumber {
+  text-align: center;
+  padding-top: 6px;
+  border: 2px solid #3d37bd;
+  border-radius: 50%;
+  background-color: #F1F3F4;
+  opacity: 0.7;
 }
 
+.pageNumber.selectedPage {
+  font-weight: bold;
+  border-color: #d66000;
+  background-color: #17A2B8;
+  color: white;
+}
