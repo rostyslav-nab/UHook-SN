@@ -1,4 +1,4 @@
-import * as axios from "axios"
+import axios from "axios"
 
 const instance = axios.create({
     withCredentials: true,
@@ -34,6 +34,15 @@ export const ProfileAPI = {
     },
     updateStatus(status){
         return instance.put(`profile/status/`, {status})
+    },
+    savePhoto(photoFile){
+        const PhotoData = new FormData()
+        PhotoData.append('image', photoFile)
+        return instance.put(`profile/photo/`, PhotoData , {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        })
     }
 }
 

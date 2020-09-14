@@ -2,6 +2,7 @@ export const ADD_POST = 'profile/ADD_POST'
 export const DELETE_POST = 'profile/DELETE_POST'
 export const SET_USER_PROFILE = 'profile/SET_USER_PROFILE'
 export const SET_STATUS = 'profile/SET_STATUS'
+export const SAVE_PHOTO_SUCCESS = 'profile/SAVE_PHOTO_SUCCESS'
 
 
 export const FOLLOW = 'users/FOLLOW'
