@@ -1,17 +1,18 @@
-import React, {useEffect} from 'react'
+import React, {Suspense, useEffect} from 'react'
 import './App.css'
 import {Navbar} from "./components/Navbar/Navbar"
 import {Route, withRouter} from "react-router-dom"
 import {Footer} from "./components/Footer/Footer"
-import {DialogsContainer} from "./components/Dialogs/DialogsContainer"
 import {UsersContainer} from "./components/Users/UsersContainer"
-import ProfileContainer from "./components/Profile/ProfileContainer"
 import HeaderContainer from "./components/Header/HeaderContainer"
 import Login from "./components/Login/Login"
 import {connect} from "react-redux"
 import {compose} from "redux"
 import {initializeApp} from "./components/redux/appReducer"
 import {MainLoader} from "./components/common/MainLoader/MainLoader"
+
+const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'))
+const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer'))
 
 
 const App = (props) => {
@@ -36,8 +37,16 @@ const App = (props) => {
                 </div>
                 <div className="col-10 content">
                     <Route path='/profile/:userId?'
-                           render={() => <ProfileContainer/>}/>
-                    <Route path='/dialogs' render={() => <DialogsContainer/>}/>
+                           render={() => {
+                               return <Suspense fallback={<h1>Loading profile...</h1>}>
+                                   <ProfileContainer />
+                               </Suspense>
+                           }}/>
+                    <Route path='/dialogs' render={() => {
+                        return <Suspense fallback={<h1>Loading profile...</h1>}>
+                            <DialogsContainer />
+                        </Suspense>
+                    }}/>
                     <Route path='/users' render={() => <UsersContainer/>}/>
                     <Route path='/login' render={() => <Login/>}/>
                 </div>

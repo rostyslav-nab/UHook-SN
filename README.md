@@ -1,5 +1,8 @@
 # This is a Social Network UHook
 
+### If you want to test my Social Network you should Login with this test account data
+### Email: free@samuraijs.com --- Password: free
+
 ## Getting Started 🏁
 
 First, run the development server:
@@ -20,7 +23,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 #### My CV app <https://kyiv.codes/>
 
 
-## About Progect 🖥️
+## About Project 🖥️
 
 #### This is a social network that can do almost everything that Facebook can.
 
