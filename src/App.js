@@ -1,7 +1,7 @@
 import React, {Suspense, useEffect} from 'react'
 import './App.css'
 import {Navbar} from "./components/Navbar/Navbar"
-import {Route, withRouter} from "react-router-dom"
+import {Route, Switch, withRouter} from "react-router-dom"
 import {Footer} from "./components/Footer/Footer"
 import {UsersContainer} from "./components/Users/UsersContainer"
 import HeaderContainer from "./components/Header/HeaderContainer"
@@ -10,6 +10,7 @@ import {connect} from "react-redux"
 import {compose} from "redux"
 import {initializeApp} from "./components/redux/appReducer"
 import {MainLoader} from "./components/common/MainLoader/MainLoader"
+import {NotFound} from "./components/404/PageNotFound"
 
 const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'))
 const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer'))
@@ -36,19 +37,22 @@ const App = (props) => {
                     <Navbar/>
                 </div>
                 <div className="col-10 content">
-                    <Route path='/profile/:userId?'
-                           render={() => {
-                               return <Suspense fallback={<h1>Loading profile...</h1>}>
-                                   <ProfileContainer />
-                               </Suspense>
-                           }}/>
-                    <Route path='/dialogs' render={() => {
-                        return <Suspense fallback={<h1>Loading profile...</h1>}>
-                            <DialogsContainer />
-                        </Suspense>
-                    }}/>
-                    <Route path='/users' render={() => <UsersContainer/>}/>
-                    <Route path='/login' render={() => <Login/>}/>
+                    <Switch>
+                        <Route path='/profile/:userId?'
+                               render={() => {
+                                   return <Suspense fallback={<h1>Loading profile...</h1>}>
+                                       <ProfileContainer/>
+                                   </Suspense>
+                               }}/>
+                        <Route path='/dialogs' render={() => {
+                            return <Suspense fallback={<h1>Loading profile...</h1>}>
+                                <DialogsContainer/>
+                            </Suspense>
+                        }}/>
+                        <Route path='/users' render={() => <UsersContainer/>}/>
+                        <Route path='/login' render={() => <Login/>}/>
+                        <Route component={NotFound}/>
+                    </Switch>
                 </div>
             </div>
             <div className="navbar-fixed-bottom row-fluid">
