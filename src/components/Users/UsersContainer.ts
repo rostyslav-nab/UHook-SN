@@ -1,9 +1,7 @@
 import {connect} from "react-redux"
-import {Users} from "./Users"
+import {MapDispatchPropsUsersType, MapStatePropsUsersType, Users} from "./Users"
 import {
     follow, getUsers,
-    setCurrentPage,
-    toggleFollowingInProgress,
     unFollow
 } from "../redux/usersReducer"
 import {compose} from "redux"
@@ -15,8 +13,9 @@ import {
     getPageSize,
     getTotalUsersCount
 } from "../redux/usersSelector"
+import {AppStateType} from "../redux/redux-store"
 
-let mapStateToProps = (state) => {
+let mapStateToProps = (state: AppStateType): MapStatePropsUsersType => {
     return {
         users: getAllUsers(state),
         pageSize: getPageSize(state),
@@ -29,11 +28,9 @@ let mapStateToProps = (state) => {
 
 
 export const UsersContainer = compose(
-    connect(mapStateToProps, {
+    connect<MapStatePropsUsersType, MapDispatchPropsUsersType, {}, AppStateType>(mapStateToProps, {
         follow,
         unFollow,
-        setCurrentPage,
-        toggleFollowingInProgress,
         getUsers
     })
 )(Users)
