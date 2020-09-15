@@ -1,7 +1,7 @@
 import React, {Suspense, useEffect} from 'react'
 import './App.css'
 import {Navbar} from "./components/Navbar/Navbar"
-import {Route, Switch, withRouter} from "react-router-dom"
+import {Redirect, Route, Switch, withRouter} from "react-router-dom"
 import {Footer} from "./components/Footer/Footer"
 import {UsersContainer} from "./components/Users/UsersContainer"
 import HeaderContainer from "./components/Header/HeaderContainer"
@@ -16,14 +16,14 @@ const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsCo
 const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer'))
 
 
-const App = (props) => {
+const App = ({initializeApp, initialized}) => {
 
     useEffect(() => {
-        props.initializeApp()
+        initializeApp()
     }, [])
 
 
-    if (!props.initialized) {
+    if (!initialized) {
         return <MainLoader/>
     }
 
@@ -38,6 +38,7 @@ const App = (props) => {
                 </div>
                 <div className="col-10 content">
                     <Switch>
+                        <Route exact path='/' render={() => <Redirect to='/profile'/>}/>
                         <Route path='/profile/:userId?'
                                render={() => {
                                    return <Suspense fallback={<h1>Loading profile...</h1>}>
