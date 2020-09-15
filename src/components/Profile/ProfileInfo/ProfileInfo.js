@@ -3,7 +3,7 @@ import classes from './ProfileInfo.module.scss'
 import {Loader} from "../../common/loader/Loader"
 import {ProfileStatus} from "../../Status/ProfileStatus"
 import notPhoto from '../../../assets/notPhoto2.png'
-import ProfileDataFormReduxForm from "../ProfileDataForm"
+import ProfileDataFormRedux from "../ProfileDataForm"
 
 export const ProfileInfo = ({profile, status, updateStatus, isOwner, savePhoto, saveProfile}) => {
 
@@ -20,6 +20,9 @@ export const ProfileInfo = ({profile, status, updateStatus, isOwner, savePhoto, 
 
     const onSubmit = (formData) => {
         saveProfile(formData)
+            .then(()=>{
+                setEditMode(false)
+            })
     }
 
     return (
@@ -34,8 +37,9 @@ export const ProfileInfo = ({profile, status, updateStatus, isOwner, savePhoto, 
                 <div>
                     {isOwner && <input className={classes.uploadFileInput} type='file' onChange={mainPhotoSelected}/>}
                 </div>
-                {editMode ? <ProfileDataFormReduxForm profile={profile} onSubmit={onSubmit}/> : <ProfileData activateEditMode={()=> setEditMode(true)}
-                                                                                profile={profile} isOwner={isOwner}/>}
+                {editMode ? <ProfileDataFormRedux initialValues={profile} profile={profile} onSubmit={onSubmit}/> :
+                    <ProfileData activateEditMode={() => setEditMode(true)}
+                                 profile={profile} isOwner={isOwner}/>}
                 <div>
                     <ProfileStatus status={status} updateStatus={updateStatus}/>
                 </div>
@@ -53,18 +57,20 @@ const ProfileData = ({profile, isOwner, activateEditMode}) => {
             <div>
                 {profile.aboutMe && <p>About Me: {profile.aboutMe}</p>}
             </div>
-            <div>
-                <b>Looking for a job</b>: {profile.lookingForAJob ? "yes" : "no"}
-            </div>
-            {profile.lookingForAJob &&
-            <div>
-                <b>My professional skills</b>: {profile.lookingForAJobDescription}
-            </div>
-            }
-            <div>
-                <b>Contacts</b> {Object.keys(profile.contacts).map(key => {
-                return <Contact key={key} contactTitle={key} contactValue={profile.contacts[key]}/>
-            })}
+            <div className={classes.lastInfo}>
+                <div>
+                    <b>Looking for a job</b>: {profile.lookingForAJob ? "yes" : "no"}
+                </div>
+                {profile.lookingForAJob &&
+                <div>
+                    <b>My professional skills</b>: {profile.lookingForAJobDescription}
+                </div>
+                }
+                <div>
+                    <h4>Contacts</h4> {Object.keys(profile.contacts).map(key => {
+                    return <Contact key={key} contactTitle={key} contactValue={profile.contacts[key]}/>
+                })}
+                </div>
             </div>
         </>
     )
