@@ -1,10 +1,13 @@
-import React from "react"
+import React, {useState} from "react"
 import classes from './ProfileInfo.module.scss'
 import {Loader} from "../../common/loader/Loader"
 import {ProfileStatus} from "../../Status/ProfileStatus"
 import notPhoto from '../../../assets/notPhoto2.png'
+import ProfileDataFormReduxForm from "../ProfileDataForm"
 
-export const ProfileInfo = ({profile, status, updateStatus, isOwner, savePhoto}) => {
+export const ProfileInfo = ({profile, status, updateStatus, isOwner, savePhoto, saveProfile}) => {
+
+    const [editMode, setEditMode] = useState(false);
     if (!profile) {
         return <Loader/>
     }
@@ -13,6 +16,10 @@ export const ProfileInfo = ({profile, status, updateStatus, isOwner, savePhoto})
         if (e.target.files.length) {
             savePhoto(e.target.files[0])
         }
+    }
+
+    const onSubmit = (formData) => {
+        saveProfile(formData)
     }
 
     return (
@@ -27,12 +34,42 @@ export const ProfileInfo = ({profile, status, updateStatus, isOwner, savePhoto})
                 <div>
                     {isOwner && <input className={classes.uploadFileInput} type='file' onChange={mainPhotoSelected}/>}
                 </div>
-                <h1>{profile.fullName}</h1>
-                <p>React/Redux Developer</p>
-                <p>{profile.aboutMe}</p>
-                <ProfileStatus status={status} updateStatus={updateStatus}/>
+                {editMode ? <ProfileDataFormReduxForm profile={profile} onSubmit={onSubmit}/> : <ProfileData activateEditMode={()=> setEditMode(true)}
+                                                                                profile={profile} isOwner={isOwner}/>}
+                <div>
+                    <ProfileStatus status={status} updateStatus={updateStatus}/>
+                </div>
             </div>
             <hr/>
         </div>
     )
+}
+
+const ProfileData = ({profile, isOwner, activateEditMode}) => {
+    return (
+        <>
+            {isOwner && <button className='btn btn-primary' onClick={activateEditMode}>Edit</button>}
+            <h1>FullName: {profile.fullName}</h1>
+            <div>
+                {profile.aboutMe && <p>About Me: {profile.aboutMe}</p>}
+            </div>
+            <div>
+                <b>Looking for a job</b>: {profile.lookingForAJob ? "yes" : "no"}
+            </div>
+            {profile.lookingForAJob &&
+            <div>
+                <b>My professional skills</b>: {profile.lookingForAJobDescription}
+            </div>
+            }
+            <div>
+                <b>Contacts</b> {Object.keys(profile.contacts).map(key => {
+                return <Contact key={key} contactTitle={key} contactValue={profile.contacts[key]}/>
+            })}
+            </div>
+        </>
+    )
+}
+
+const Contact = ({contactTitle, contactValue}) => {
+    return <div className={classes.contact}><b>{contactTitle}</b>: {contactValue}</div>
 }
