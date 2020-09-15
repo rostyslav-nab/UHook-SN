@@ -38,11 +38,15 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
   * Redux-Form
   * Reselect
   
-  ## Profile 🚩
+  ## Profile 🖥️
   
-  ![Profile](https://cdn1.savepice.ru/uploads/2020/9/12/3ecbb57496931ee97f5bbec9a6eb2ffa-full.jpg)
+  ![Profile](https://cdn1.savepice.ru/uploads/2020/9/15/c432278a50753ec02fb0865f4375cd2b-full.jpg)
+  
+  ## Edit Profile Info ⚖️
+  
+  ![Profile](https://cdn1.savepice.ru/uploads/2020/9/15/91d9f042668bfe849feb245457cc44c5-full.jpg)
  
-  ## Users 🚩
+  ## Users 🧔
   ![Users](https://cdn1.savepice.ru/uploads/2020/9/14/410f671f64cb03a74e6bf713502d770d-full.jpg)
   
   ## Login 🚩
