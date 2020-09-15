@@ -40,4 +40,4 @@ const ProfileDataForm = ({handleSubmit, profile, error}) => {
 
 const ProfileDataFormRedux = reduxForm({form: 'edit-profile'})(ProfileDataForm)
 
-export default ProfileDataFormRedux;
+export default ProfileDataFormRedux

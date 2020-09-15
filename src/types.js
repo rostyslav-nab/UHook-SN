@@ -15,6 +15,7 @@ export const TOGGLE_FOLLOWING_IN_PROGRESS = 'users/TOGGLE_FOLLOWING_IN_PROGRESS'
 
 
 export const SET_USER_DATA = 'auth/SET_USER_DATA'
+export const GET_CAPTCHA_URL_SUCCESS = 'auth/GET_CAPTCHA_URL_SUCCESS'
 
 
 export const SEND_MESSAGE = 'dialogs/SEND_MESSAGE'
