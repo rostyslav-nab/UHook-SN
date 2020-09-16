@@ -32,6 +32,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
   * React
   * Redux-thunk
   * Redux
+  * TypeScript
   * Bootstrap
   * axios
   * SCSS

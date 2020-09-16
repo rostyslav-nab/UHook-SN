@@ -1,6 +1,7 @@
 import {INITIALIZED_SUCCESS} from "../../types"
 import {getAuthUserData} from "./authReducer"
 
+
 export type InitialStateType = {
     initialized: boolean
 }
