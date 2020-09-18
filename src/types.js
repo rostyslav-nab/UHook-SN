@@ -1,3 +1,0 @@
-export const SET_USER_DATA = 'auth/SET_USER_DATA'
-export const GET_CAPTCHA_URL_SUCCESS = 'auth/GET_CAPTCHA_URL_SUCCESS'
-

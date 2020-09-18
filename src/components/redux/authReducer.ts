@@ -27,8 +27,8 @@ type ThunkType = BaseThunkType<ActionsType | FormAction>
 
 export const authReducer = (state = initialState, action: ActionsType): InitialStateType => {
     switch (action.type) {
-        case 'SET_USER_DATA':
-        case 'GET_CAPTCHA_URL_SUCCESS':
+        case 'SN/AUTH/SET_USER_DATA':
+        case 'SN/AUTH/GET_CAPTCHA_URL_SUCCESS':
             return {
                 ...state,
                 ...action.payload
@@ -41,11 +41,11 @@ export const authReducer = (state = initialState, action: ActionsType): InitialS
 
 export const actions = {
     setAuthUserData: (userId: number | null, email: string | null, login: string | null, isAuth: boolean) => ({
-        type: 'SET_USER_DATA',
+        type: 'SN/AUTH/SET_USER_DATA',
         payload: {userId, email, login, isAuth}
     } as const),
     getCaptchaUrlSuccess: (captchaUrl: string | never) => ({
-        type: 'GET_CAPTCHA_URL_SUCCESS',
+        type: 'SN/AUTH/GET_CAPTCHA_URL_SUCCESS',
         payload: {captchaUrl}
     } as const)
 }
