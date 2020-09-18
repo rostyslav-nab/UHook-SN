@@ -103,12 +103,12 @@ const _followUnFollowFlow = async (dispatch: DispatchType, userId: number,
 
 export const follow = (userId: number) => {
     return async (dispatch: DispatchType, getState: GetStateType) => {
-        _followUnFollowFlow(dispatch, userId, UsersAPI.follow.bind(UsersAPI), actions.acceptFollow)
+        await _followUnFollowFlow(dispatch, userId, UsersAPI.follow.bind(UsersAPI), actions.acceptFollow)
     }
 }
 
 export const unFollow = (userId: number) => {
     return async (dispatch: DispatchType, getState: GetStateType) => {
-        _followUnFollowFlow(dispatch, userId, UsersAPI.unfollow.bind(UsersAPI), actions.acceptUnFollow)
+        await _followUnFollowFlow(dispatch, userId, UsersAPI.unfollow.bind(UsersAPI), actions.acceptUnFollow)
     }
 }
