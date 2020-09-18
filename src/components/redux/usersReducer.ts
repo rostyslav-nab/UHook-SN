@@ -1,8 +1,8 @@
-import {UsersAPI} from "../api/api"
 import {updateObjectInArray} from "../../utils/objectsHelper"
 import {UserType} from "../../TSTypes/Types"
 import {AppStateType, InferActionsType} from "./redux-store"
 import {Dispatch} from "redux"
+import {UsersAPI} from "../api/UsersApi"
 
 let initialState: InitialStateType = {
     users: [],

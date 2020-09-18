@@ -1,6 +1,8 @@
 import {GET_CAPTCHA_URL_SUCCESS, SET_USER_DATA} from "../../types"
-import {AuthAPI, ResultCodesEnum, SecurityAPI} from "../api/api"
+import {ResultCodesEnum} from "../api/api"
 import {stopSubmit} from "redux-form"
+import {AuthAPI} from "../api/AuthApi";
+import {SecurityAPI} from "../api/SecurityApi";
 
 
 export type InitialStateType = {
@@ -92,8 +94,8 @@ export const login = (email: string, password: string, rememberMe: boolean, capt
 }
 
 export const getCaptchaUrl = () => async (dispatch: any) => {
-    const response = await SecurityAPI.getCaptchaUrl()
-    const captchaUrl = response.data.url
+    const data = await SecurityAPI.getCaptchaUrl()
+    const captchaUrl = data.url
     dispatch(getCaptchaUrlSuccess(captchaUrl))
 
 }
