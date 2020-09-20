@@ -2,21 +2,22 @@ import React from "react"
 import classes from './Dialogs.module.scss'
 import {Dialog} from "./Dialog/Dialog"
 import {Message} from "./Message/Message"
-import {Redirect} from "react-router-dom"
 import {Field, reduxForm} from "redux-form"
 import {Textarea} from "../common/FormsControls/FormsControls"
 import {maxLengthCreator, requiredFields} from "../../utils/validators/validators"
+import {initialStateType} from "../redux/dialogsReducer"
 
-export const Dialogs = ({dialogsPage, sendMessage, isAuth}) => {
+type ownProps = {
+    dialogsPage: initialStateType
+    sendMessage: (messageText: string) => void
+}
+
+export const Dialogs: React.FC<ownProps> = ({dialogsPage, sendMessage}) => {
     let dialogsElements = dialogsPage.dialogs.map((dialog) => <Dialog name={dialog.name} id={dialog.id} key={dialog.id}/>)
     let messageElements = dialogsPage.messages.map((message) => <Message message={message.message} key={message.id}/>)
 
-    let addNewMessage = (values) => {
+    let addNewMessage = (values: any) => {
         sendMessage(values.newMessageBody)
-    }
-
-    if (!isAuth) {
-        return <Redirect to={'/login'}/>
     }
 
     return (
@@ -46,9 +47,9 @@ export const Dialogs = ({dialogsPage, sendMessage, isAuth}) => {
 
 const maxLength100 = maxLengthCreator(100)
 
-const AddMessageForm = ({handleSubmit}) => {
+const AddMessageForm = (props: any) => {
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={props.handleSubmit}>
             <div>
                 <Field component={Textarea} validate={[requiredFields, maxLength100]} name={'newMessageBody'} placeholder='Enter your message' className="form-control"/>
             </div>

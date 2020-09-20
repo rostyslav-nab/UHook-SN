@@ -16,7 +16,7 @@ export type LoginFormValuesType = {
     captcha: string
 }
 
-type LoginFormValuesTypeKeys = keyof LoginFormValuesType
+export type LoginFormValuesTypeKeys = keyof LoginFormValuesType
 
 
 const Login: React.FC<MapStateToPropsType & MapDispatchToPropsType> = ({login, isAuth, captchaUrl}) => {
