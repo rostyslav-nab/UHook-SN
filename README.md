@@ -30,6 +30,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 #### Technologies in this project:
 
   * React
+  * JavaScript
   * Redux-thunk
   * Redux
   * TypeScript
@@ -41,14 +42,14 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
   
   ## Profile 🖥️
   
-  ![Profile](https://cdn1.savepice.ru/uploads/2020/9/15/c432278a50753ec02fb0865f4375cd2b-full.jpg)
+  ![Profile](./src/assets/README_Photos/Profile.jpg)
   
   ## Edit Profile Info ⚖️
   
-  ![Profile](https://cdn1.savepice.ru/uploads/2020/9/15/91d9f042668bfe849feb245457cc44c5-full.jpg)
+  ![Profile](./src/assets/README_Photos/EditProfileInfo.jpg)
  
   ## Users 🧔
-  ![Users](https://cdn1.savepice.ru/uploads/2020/9/14/410f671f64cb03a74e6bf713502d770d-full.jpg)
+  ![Users](./src/assets/README_Photos/Users.jpg)
   
   ## Login 🚩
-  ![Login](https://cdn1.savepice.ru/uploads/2020/9/12/bd49962fbce015fda9e7141138a00b60-full.jpg)
+  ![Login](./src/assets/README_Photos/Login.jpg)
