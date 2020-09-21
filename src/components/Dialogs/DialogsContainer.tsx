@@ -4,6 +4,7 @@ import {connect} from "react-redux"
 import {WithAuthRedirect} from "../../hoc/withAuthRedirect"
 import {compose} from "redux"
 import {AppStateType} from "../redux/redux-store"
+import {ComponentType} from "react"
 
 let mapStateToProps = (state: AppStateType) => {
     return {
@@ -11,7 +12,7 @@ let mapStateToProps = (state: AppStateType) => {
     }
 }
 
-const DialogsContainer = compose(
+const DialogsContainer = compose<ComponentType>(
     connect(mapStateToProps, {
         sendMessage: actions.sendMessage
     }),

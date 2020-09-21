@@ -1,4 +1,4 @@
-import React, {Suspense, useEffect} from 'react'
+import React, {ComponentType, Suspense, useEffect} from 'react'
 import './App.css'
 import {Navbar} from "./components/Navbar/Navbar"
 import {Redirect, Route, Switch, withRouter} from "react-router-dom"
@@ -11,17 +11,22 @@ import {compose} from "redux"
 import {initializeApp} from "./components/redux/appReducer"
 import {MainLoader} from "./components/common/MainLoader/MainLoader"
 import {NotFound} from "./components/404/PageNotFound"
+import {AppStateType} from "./components/redux/redux-store"
 
 const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'))
 const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer'))
 
+type MapPropsType = ReturnType<typeof mapStateToProps>
+type DispatchPropsType = {
+    initializeApp: () => void
+}
 
-const App = ({initializeApp, initialized}) => {
+
+const App: React.FC<MapPropsType & DispatchPropsType> = ({initializeApp, initialized}) => {
 
     useEffect(() => {
         initializeApp()
     }, [])
-
 
     if (!initialized) {
         return <MainLoader/>
@@ -67,11 +72,11 @@ const App = ({initializeApp, initialized}) => {
     )
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: AppStateType) => ({
     initialized: state.app.initialized
 })
 
-export default compose(
+export default compose<ComponentType>(
     withRouter,
     connect(mapStateToProps, {initializeApp})
 )(App)
